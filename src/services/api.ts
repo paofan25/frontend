@@ -3,7 +3,7 @@ import { Post, User, Skin } from '../types';
 
 // 创建一个axios实例
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000/api',
+  baseURL: 'http://localhost:5001/api',
   timeout: 15000, // 增加超时时间到15秒
   headers: {
     'Content-Type': 'application/json',

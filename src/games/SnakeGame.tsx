@@ -94,18 +94,23 @@ const SnakeGame: React.FC = () => {
 
   // 随机生成食物
   const generateFood = (snakeBody: { x: number, y: number }[]): { x: number, y: number } => {
-    let newFood: { x: number, y: number } = { x: 0, y: 0 };
+    let newFood: { x: number, y: number };
+    let foodOnSnake: boolean;
 
-    // eslint-disable-next-line no-loop-func
     do {
-      newFood = {
+      // 在循环内部创建一个新的变量，避免闭包引用外部变量
+      const tempFood = {
         x: Math.floor(Math.random() * GRID_SIZE),
         y: Math.floor(Math.random() * GRID_SIZE)
       };
-      // 确保食物不在蛇的身体上
-    } while (snakeBody.some(segment => segment.x === newFood.x && segment.y === newFood.y));
+      // 检查食物是否在蛇的身体上
+      foodOnSnake = snakeBody.some(segment => segment.x === tempFood.x && segment.y === tempFood.y);
+      if (!foodOnSnake) {
+        newFood = tempFood;
+      }
+    } while (foodOnSnake);
 
-    return newFood;
+    return newFood!;
   };
 
   // 绘制游戏

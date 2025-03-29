@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { authAPI } from '../services/api';
-import { User } from '../types';
 
 interface TokenPayload {
   userId: string;

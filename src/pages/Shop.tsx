@@ -19,12 +19,11 @@ import {
 } from '@mui/material';
 import { useAuth } from '../hooks/useAuth';
 import { ShopItem } from '../types';
-import axios from 'axios';
 
 const ITEMS_PER_PAGE = 6;
 
 const Shop: React.FC = () => {
-    const { user, isAuthenticated, isLoading } = useAuth();
+    const { user, isAuthenticated } = useAuth();
     const [items, setItems] = useState<ShopItem[]>([]);
     const [activeTab, setActiveTab] = useState<string>('all');
     const [loading, setLoading] = useState(true);
@@ -146,7 +145,7 @@ const Shop: React.FC = () => {
         };
 
         loadItems();
-    }, []);
+    }, [mockShopItems]);
 
     const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
         setActiveTab(newValue);
